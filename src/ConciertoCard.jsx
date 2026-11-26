@@ -1,7 +1,9 @@
-function ConciertoCard({ concierto, onReservar }) {
+import { duracion, hora } from "./utils/agenda.js";
+
+function ConciertoCard({ concierto, onAgregar }) {
   function manejarClick() {
     console.log(`Concierto seleccionado: ${concierto.artista}`);
-    onReservar();
+    onAgregar(concierto);
   }
 
   return (
@@ -11,10 +13,13 @@ function ConciertoCard({ concierto, onReservar }) {
         <strong>Género:</strong> {concierto.genero}
       </p>
       <p>
-        <strong>Horario:</strong> {concierto.horario}
+        <strong>Hora:</strong> {hora(concierto.inicio)} - {hora(concierto.fin)}
+      </p>
+      <p>
+        <strong>Duración:</strong> {duracion(concierto)} minutos
       </p>
       <button type="button" onClick={manejarClick}>
-        Reservar / Info
+        Añadir a mi agenda
       </button>
     </article>
   );
